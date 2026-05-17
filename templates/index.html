@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoSim — Simulasi Kriptografi Klasik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">⟨/⟩</span>
+      <span class="logo-text">CryptoSim</span>
+    </div>
+    <nav class="header-nav">
+      <a href="#caesar" class="nav-pill active" data-algo="caesar">Caesar</a>
+      <a href="#vigenere" class="nav-pill" data-algo="vigenere">Vigenère</a>
+      <a href="#affine" class="nav-pill" data-algo="affine">Affine</a>
+      <a href="#hill" class="nav-pill" data-algo="hill">Hill</a>
+      <a href="#playfair" class="nav-pill" data-algo="playfair">Playfair</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-history" id="btnHistory" title="Riwayat">
+        <span>📜</span> Riwayat
+      </button>
+      <button class="btn-theme" id="btnTheme" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Simulasi Edukasi Interaktif</div>
+    <h1 class="hero-title">Kriptografi<br><em>Klasik</em></h1>
+    <p class="hero-sub">Pelajari 5 algoritma enkripsi historis secara visual, langkah demi langkah, dengan rumus matematis lengkap.</p>
+    <div class="algo-cards-mini">
+      <span class="algo-tag" data-algo="caesar">Caesar</span>
+      <span class="algo-tag" data-algo="vigenere">Vigenère</span>
+      <span class="algo-tag" data-algo="affine">Affine</span>
+      <span class="algo-tag" data-algo="hill">Hill</span>
+      <span class="algo-tag" data-algo="playfair">Playfair</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+  <!-- ═══════════════════════════════════ CAESAR ═══════════════════════════════════ -->
+  <section class="algo-section" id="caesar">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div>
+        <h2 class="section-title">Caesar Cipher</h2>
+        <p class="section-desc">Substitusi monoalfabetik tertua. Setiap huruf digeser sejauh <em>k</em> posisi dalam alfabet.</p>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="formula-badge">E(x) = (x + k) mod 26 &nbsp;|&nbsp; D(x) = (x − k) mod 26</div>
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Teks Input</label>
+          <textarea id="caesar-text" placeholder="Masukkan teks..." rows="3"></textarea>
+        </div>
+        <div class="input-group small">
+          <label>Shift (k)</label>
+          <div class="shift-control">
+            <button class="shift-btn" onclick="adjustShift('caesar', -1)">−</button>
+            <input type="number" id="caesar-shift" value="3" min="1" max="25">
+            <button class="shift-btn" onclick="adjustShift('caesar', 1)">+</button>
+          </div>
+          <div class="shift-visual" id="caesar-shift-visual"></div>
+        </div>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-algo="caesar" data-mode="encrypt">🔐 Enkripsi</button>
+        <button class="mode-btn" data-algo="caesar" data-mode="decrypt">🔓 Dekripsi</button>
+      </div>
+      <button class="btn-process" onclick="processCipher('caesar')">
+        <span class="btn-icon">▶</span> Proses
+      </button>
+      <div id="caesar-result" class="result-area hidden"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ VIGENÈRE ═══════════════════════════════════ -->
+  <section class="algo-section" id="vigenere">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div>
+        <h2 class="section-title">Vigenère Cipher</h2>
+        <p class="section-desc">Substitusi polialfabetik menggunakan kata kunci yang diulang. Lebih kuat dari Caesar.</p>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="formula-badge">E(x) = (x + k<sub>i</sub>) mod 26 &nbsp;|&nbsp; D(x) = (x − k<sub>i</sub>) mod 26</div>
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Teks Input</label>
+          <textarea id="vigenere-text" placeholder="Masukkan teks..." rows="3"></textarea>
+        </div>
+        <div class="input-group small">
+          <label>Kata Kunci</label>
+          <input type="text" id="vigenere-key" placeholder="contoh: SECRET" oninput="this.value=this.value.toUpperCase()">
+          <div class="key-display" id="vigenere-key-display"></div>
+        </div>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-algo="vigenere" data-mode="encrypt">🔐 Enkripsi</button>
+        <button class="mode-btn" data-algo="vigenere" data-mode="decrypt">🔓 Dekripsi</button>
+      </div>
+      <button class="btn-process" onclick="processCipher('vigenere')">
+        <span class="btn-icon">▶</span> Proses
+      </button>
+      <div id="vigenere-result" class="result-area hidden"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ AFFINE ═══════════════════════════════════ -->
+  <section class="algo-section" id="affine">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div>
+        <h2 class="section-title">Affine Cipher</h2>
+        <p class="section-desc">Enkripsi berbasis fungsi linear modular dengan dua kunci: <em>a</em> (multiplikatif) dan <em>b</em> (aditif).</p>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="formula-badge">E(x) = (a·x + b) mod 26 &nbsp;|&nbsp; D(x) = a⁻¹·(x − b) mod 26</div>
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Teks Input</label>
+          <textarea id="affine-text" placeholder="Masukkan teks..." rows="3"></textarea>
+        </div>
+        <div class="input-group small">
+          <label>Nilai <em>a</em> (harus coprime dengan 26)</label>
+          <select id="affine-a">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="7">7</option>
+            <option value="9">9</option>
+            <option value="11">11</option>
+            <option value="15">15</option>
+            <option value="17">17</option>
+            <option value="19">19</option>
+            <option value="21">21</option>
+            <option value="23">23</option>
+            <option value="25">25</option>
+          </select>
+          <label style="margin-top:1rem">Nilai <em>b</em></label>
+          <input type="number" id="affine-b" value="8" min="0" max="25">
+        </div>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-algo="affine" data-mode="encrypt">🔐 Enkripsi</button>
+        <button class="mode-btn" data-algo="affine" data-mode="decrypt">🔓 Dekripsi</button>
+      </div>
+      <button class="btn-process" onclick="processCipher('affine')">
+        <span class="btn-icon">▶</span> Proses
+      </button>
+      <div id="affine-result" class="result-area hidden"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ HILL ═══════════════════════════════════ -->
+  <section class="algo-section" id="hill">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div>
+        <h2 class="section-title">Hill Cipher</h2>
+        <p class="section-desc">Kriptografi poligrafik berbasis aljabar linear. Mengenkripsi blok huruf menggunakan perkalian matriks.</p>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="formula-badge">C = K · P (mod 26) &nbsp;|&nbsp; P = K⁻¹ · C (mod 26)</div>
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Teks Input</label>
+          <textarea id="hill-text" placeholder="Masukkan teks..." rows="3"></textarea>
+        </div>
+        <div class="input-group small">
+          <label>Ukuran Matriks</label>
+          <div class="matrix-size-toggle">
+            <button class="size-btn active" onclick="setMatrixSize(2)">2×2</button>
+            <button class="size-btn" onclick="setMatrixSize(3)">3×3</button>
+          </div>
+          <label style="margin-top:1rem">Matriks Kunci K</label>
+          <div id="hill-matrix-input" class="matrix-input-grid"></div>
+          <button class="btn-preset" onclick="setPresetMatrix()">Gunakan Preset</button>
+        </div>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-algo="hill" data-mode="encrypt">🔐 Enkripsi</button>
+        <button class="mode-btn" data-algo="hill" data-mode="decrypt">🔓 Dekripsi</button>
+      </div>
+      <button class="btn-process" onclick="processCipher('hill')">
+        <span class="btn-icon">▶</span> Proses
+      </button>
+      <div id="hill-result" class="result-area hidden"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ PLAYFAIR ═══════════════════════════════════ -->
+  <section class="algo-section" id="playfair">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div>
+        <h2 class="section-title">Playfair Cipher</h2>
+        <p class="section-desc">Enkripsi bigram menggunakan tabel 5×5. Pertama kali digunakan secara luas dalam militer.</p>
+      </div>
+    </div>
+    <div class="algo-card">
+      <div class="formula-badge">Aturan: Baris Sama | Kolom Sama | Persegi Panjang</div>
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Teks Input</label>
+          <textarea id="playfair-text" placeholder="Masukkan teks..." rows="3"></textarea>
+        </div>
+        <div class="input-group small">
+          <label>Kata Kunci</label>
+          <input type="text" id="playfair-key" placeholder="contoh: MONARCHY" oninput="updatePlayfairMatrix()">
+          <label style="margin-top:1rem">Preview Tabel 5×5</label>
+          <div id="playfair-preview-matrix" class="playfair-matrix-mini"></div>
+        </div>
+      </div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-algo="playfair" data-mode="encrypt">🔐 Enkripsi</button>
+        <button class="mode-btn" data-algo="playfair" data-mode="decrypt">🔓 Dekripsi</button>
+      </div>
+      <button class="btn-process" onclick="processCipher('playfair')">
+        <span class="btn-icon">▶</span> Proses
+      </button>
+      <div id="playfair-result" class="result-area hidden"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- HISTORY PANEL -->
+<div class="history-overlay" id="historyOverlay" onclick="closeHistory()"></div>
+<aside class="history-panel" id="historyPanel">
+  <div class="history-header">
+    <h3>📜 Riwayat Operasi</h3>
+    <div>
+      <button class="btn-clear-history" onclick="clearHistory()">Hapus</button>
+      <button class="btn-close-history" onclick="closeHistory()">✕</button>
+    </div>
+  </div>
+  <div class="history-list" id="historyList"></div>
+</aside>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<footer class="site-footer">
+  <p>CryptoSim — Simulasi Kriptografi Klasik &nbsp;|&nbsp; Dibuat dengan Flask + Python &nbsp;|&nbsp; Edukasi Keamanan Informasi</p>
+</footer>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
