@@ -23,15 +23,15 @@ Pengembangan dari Caesar Cipher yang menggunakan metode substitusi polialfabetik
 * **Kelebihan di App:** Validasi kata kunci otomatis agar proses enkripsi tetap presisi tanpa memedulikan perbedaan *case* huruf.
 
 ### 3. 📐 Affine Cipher
-Cipher substitusi monoalfabetik yang memanfaatkan fungsi matematis linear $E(x) = (ax + b) \pmod{26}$.
-* **Kelebihan di App:** Dilengkapi dengan validasi otomatis untuk memastikan nilai $a$ yang dimasukkan saling prima (*coprime*) dengan 26 ($	ext{gcd}(a, 26) = 1$), sehingga proses dekripsi selalu valid dan memiliki invers matriks modular.
+Cipher substitusi monoalfabetik yang memanfaatkan fungsi matematis linear E(x) = (a·x + b) mod 26
+* **Kelebihan di App:** Dilengkapi dengan validasi otomatis untuk memastikan nilai a yang dimasukkan saling prima (*coprime*) dengan 26, sehingga proses dekripsi selalu valid dan memiliki invers matriks modular.
 
 ### 4. 📊 Hill Cipher
 Algoritma kriptografi polialfabetik yang memanfaatkan teori aljabar linear, khususnya perkalian matriks. Teks dikelompokkan ke dalam blok-blok berukuran tertentu kemudian dikalikan dengan matriks kunci.
-* **Kelebihan di App:** Mendukung konfigurasi matriks kunci (seperti $2 	imes 2$ atau $3 	imes 3$) secara dinamis langsung dari antarmuka web dengan perhitungan determinan otomatis untuk proses dekripsi.
+* **Kelebihan di App:** Mendukung konfigurasi matriks kunci (seperti 2 x 2 atau 3 x 3) secara dinamis langsung dari antarmuka web dengan perhitungan determinan otomatis untuk proses dekripsi.
 
 ### 5. 👥 Playfair Cipher
-Metode enkripsi simetris berbasis teknik substitusi digram (pasangan huruf) yang menggunakan matriks kunci berukuran $5 	imes 5$ yang berisi kombinasi alfabet (biasanya menggabungkan huruf I dan J).
+Metode enkripsi simetris berbasis teknik substitusi digram (pasangan huruf) yang menggunakan matriks kunci berukuran 5 x 5 yang berisi kombinasi alfabet (biasanya menggabungkan huruf I dan J).
 * **Kelebihan di App:** Logika otomatis untuk menangani pemisahan huruf kembar (*filler character* seperti 'X') dan pembentukan pasangan digram secara *real-time*.
 
 ---
