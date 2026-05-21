@@ -43,7 +43,6 @@ Proyek ini dirancang secara modular untuk memastikan kode mudah dipahami, dirawa
 * **Backend Core:** `Python 3` – Menangani seluruh komputasi matematis, manipulasi string, dan operasi matriks.
 * **Web Framework:** `Flask` – Sebagai *micro-framework* yang ringan untuk menjembatani logika backend dengan antarmuka pengguna secara efisien melalui perutean (*routing*) yang rapi.
 * **Frontend Interface:** `HTML5 & CSS3` – Desain antarmuka yang bersih, intuitif, dan *user-friendly*, memisahkan input parameter kunci untuk setiap jenis cipher agar tidak membingungkan pengguna.
-* **Deployment Ready:** Dilengkapi konfigurasi `passenger_wsgi.py` yang siap digunakan untuk kebutuhan *hosting* pada *cPanel* atau layanan cloud modern.
 
 ---
 
