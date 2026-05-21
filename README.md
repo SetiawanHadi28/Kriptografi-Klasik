@@ -53,5 +53,3 @@ Proyek ini dibuat bukan hanya sekadar untuk menghasilkan teks tersandi, melainka
 2. Mempelajari implementasi nyata matematika diskrit (operasi modulo, fpb/gcd, dan matriks inverse) di dalam baris kode pemrograman.
 3. Melakukan validasi hasil perhitungan manual (misalnya untuk tugas kuliah atau praktikum) dengan cepat dan akurat.
 
----
-*Dibuat dengan 💻 dan ☕ untuk pengembangan ilmu keamanan informasi.*
